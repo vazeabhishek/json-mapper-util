@@ -1,0 +1,7 @@
+{
+  "sourceKey1": "destinationKey1",
+  "sourceKey2": "destinationKey1.innerKey1",
+  "sourceKey3": "destinationKey1.innerKey1.nestedKey1",
+  "sourceKey4": "destinationKey1.innerKey2.nestedKey2",
+  "sourceKey5": "destinationKey2"
+}
