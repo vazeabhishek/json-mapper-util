@@ -24,12 +24,5 @@ public class KeyUtilTests {
         String actual = keyUtil.findRemainingEndPartOfKey(value);
         Assert.assertEquals(expected,actual);
     }
-    @Test
-    public void testFindRemainingFirstPartOfKey(){
-        String value = "key.innerKey.furtherInnerKey";
-        String expected = "key.innerKey";
-        String actual = keyUtil.findRemainingFirstPartOfKey(value);
-        Assert.assertEquals(expected,actual);
-    }
 
 }

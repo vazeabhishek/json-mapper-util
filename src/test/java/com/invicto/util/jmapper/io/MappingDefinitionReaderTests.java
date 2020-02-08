@@ -1,5 +1,6 @@
 package com.invicto.util.jmapper.io;
 
+import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +14,7 @@ import java.util.Map;
 @RunWith(JUnit4.class)
 public class MappingDefinitionReaderTests {
 
-    private MappingDefiniationReader mappingDefiniationReader = new MappingDefiniationReader();
+    private MappingDefiniationReader mappingDefiniationReader = new MappingDefiniationReader(new Gson());
 
     @Test
     public void testForFilePath() throws FileNotFoundException {
