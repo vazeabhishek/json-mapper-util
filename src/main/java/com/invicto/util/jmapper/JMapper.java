@@ -1,38 +1,31 @@
 package com.invicto.util.jmapper;
 
 import com.google.gson.Gson;
-import com.invicto.util.jmapper.cache.FileCache;
-import com.invicto.util.jmapper.cache.MappingCache;
 import com.invicto.util.jmapper.io.MappingDefiniationReader;
 
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 
 public class JMapper {
 
-    private MappingCache mappingCache = new MappingCache();
-
+    private final Map<String, String> mappingDef;
     private final KeyUtil keyUtil = new KeyUtil();
     private final MappingDefiniationReader mappingDefiniationReader = new MappingDefiniationReader();
     private final Gson gson = new Gson();
 
-    public JMapper withMappingFile(String path) throws FileNotFoundException {
-        Optional<MappingCache> cache = FileCache.find(path);
-        if (cache.isPresent()) {
-            mappingCache = cache.get();
-        } else {
-            mappingCache.addAll(mappingDefiniationReader.read(path));
-            FileCache.put(path, mappingCache);
-        }
-        return this;
+    public JMapper(String path) throws FileNotFoundException {
+        this.mappingDef = this.mappingDefiniationReader.read(path);
+    }
+
+    public JMapper(Map<String, String> mappingDef) {
+        this.mappingDef = mappingDef;
     }
 
     public String toTransformedJson(String jsonString) throws Exception {
-        Map<String,Object> sourceMap = gson.fromJson(jsonString,Map.class);
-        Map<String,Object> targetMap = mapToNewMap(mappingCache.getMap(),sourceMap);
+        Map<String, Object> sourceMap = gson.fromJson(jsonString, Map.class);
+        Map<String, Object> targetMap = mapToNewMap(mappingDef, sourceMap);
         return gson.toJson(targetMap);
     }
 

@@ -21,7 +21,7 @@ public class JMapperTests {
                 "            \"dino\" :  [\"val\",\"val2\",\"val3\"]\n" +
                 "          }\n" +
                 "}";
-        jMapper = new JMapper().withMappingFile("src\\test\\resources\\test-mapping.json");
+        jMapper = new JMapper("src\\test\\resources\\test-mapping.json");
         System.out.println(jMapper.toTransformedJson(input));
     }
 
