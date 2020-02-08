@@ -23,13 +23,13 @@ public class JMapper {
         this.mappingDef = mappingDef;
     }
 
-    public String toTransformedJson(String jsonString) throws Exception {
+    public String toTransformedJson(String jsonString) {
         Map<String, Object> sourceMap = gson.fromJson(jsonString, Map.class);
         Map<String, Object> targetMap = mapToNewMap(mappingDef, sourceMap);
         return gson.toJson(targetMap);
     }
 
-    private void addToMap(String key, Map<String, Object> map, Object newValue) throws Exception {
+    private void addToMap(String key, Map<String, Object> map, Object newValue) {
         if (key.contains(".")) {
             String innerKey = keyUtil.findFirstKey(key);
             if (map.containsKey(innerKey)) {
@@ -42,12 +42,12 @@ public class JMapper {
                         map.put(innerKey, newValue);
                 }
             } else
-                throw new Exception();
+                throw new KeyNotFoundException("At " + key);
         } else
             map.put(key, newValue);
     }
 
-    private Object parseMap(String key, Map<String, Object> map) throws Exception {
+    private Object parseMap(String key, Map<String, Object> map) {
         if (key.contains(".")) {
             String innerKey = keyUtil.findFirstKey(key);
             if (map.containsKey(innerKey)) {
@@ -56,7 +56,7 @@ public class JMapper {
                 else
                     return map.get(innerKey);
             } else
-                throw new Exception("Invalid Key");
+                throw new KeyNotFoundException("At " + key);
         }
         return map.get(key);
     }
@@ -70,7 +70,7 @@ public class JMapper {
         return map;
     }
 
-    private Map<String, Object> mapToNewMap(Map<String, String> mappingDef, Map<String, Object> sourceMap) throws Exception {
+    private Map<String, Object> mapToNewMap(Map<String, String> mappingDef, Map<String, Object> sourceMap) {
         Map<String, Object> targetMap = null;
         for (String sourceKey : sourceMap.keySet()) {
             if (mappingDef.containsKey(sourceKey)) {
