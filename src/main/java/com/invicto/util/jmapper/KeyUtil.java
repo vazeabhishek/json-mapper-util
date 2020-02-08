@@ -13,11 +13,6 @@ class KeyUtil {
         return key.substring(key.indexOf(DOT) + 1);
     }
 
-    public String findLastKey(String key) {
-
-        return key.substring(key.lastIndexOf(DOT) + 1);
-    }
-
     public String findRemainingFirstPartOfKey(String key) {
 
         return key.substring(0, key.lastIndexOf(DOT));

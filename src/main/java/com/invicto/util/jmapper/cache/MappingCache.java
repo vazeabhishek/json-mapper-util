@@ -17,4 +17,7 @@ public class MappingCache {
     public void addAll(Map<String, String> map) {
         cache.putAll(map);
     }
+    public Map getMap(){
+        return cache;
+    }
 }

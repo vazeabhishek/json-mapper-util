@@ -18,13 +18,6 @@ public class KeyUtilTests {
         Assert.assertEquals(expected,actual);
     }
     @Test
-    public void testFindLastKey(){
-        String value = "key.innerKey.furtherInnerKey";
-        String expected = "furtherInnerKey";
-        String actual = keyUtil.findLastKey(value);
-        Assert.assertEquals(expected,actual);
-    }
-    @Test
     public void testFindRemainingEndPartOfKey(){
         String value = "key.innerKey.furtherInnerKey";
         String expected = "innerKey.furtherInnerKey";

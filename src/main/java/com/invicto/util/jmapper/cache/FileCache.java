@@ -9,7 +9,7 @@ public final class FileCache {
     private static Map<String, MappingCache> fileCache = new ConcurrentHashMap<>();
 
     public static Optional<MappingCache> find(String fileName) {
-        return Optional.of(fileCache.get(fileName));
+        return Optional.ofNullable(fileCache.get(fileName));
     }
 
     public static void put(String fileName, MappingCache value) {
