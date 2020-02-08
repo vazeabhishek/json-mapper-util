@@ -12,7 +12,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <gpg.executable>gpg</gpg.executable>
+                <gpg.executable>C:\Program Files (x86)\Gpg4win\..\GnuPG\bin\gpg</gpg.executable>
                 <gpg.passphrase>@17Nov89</gpg.passphrase>
             </properties>
         </profile>
